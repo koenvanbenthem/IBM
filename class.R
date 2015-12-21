@@ -79,8 +79,8 @@ setMethod("initialize","Leprechaun",function(.Object,parent1,parent2,sibs){#pare
   .Object@bvs<-BreedingValueSize
   size<-MeanBirthSize*(1/(0.875+0.125*sibs))+BreedingValueSize
   
-  if(!is.na(parent1)& !is.na(parent2)){
-    size<-size+MaternalEffect*pop[[parent1]]@size+0.5*pop[[parent1]]@camemberts + 0.1*pop[[parent2]]@camemberts
+  if(!is.na(parent1)){
+    size<-size+MaternalEffect*pop[[parent1]]@size+0.2*pop[[parent1]]@food
   }
   .Object@size<-abs(rnorm(n=1,mean=size,sd=PlasticityBirthSize)) # sd plasticity birth size
   
