@@ -1,11 +1,15 @@
+### Set your own working directory
+### ------------------------------
+setwd("/Users/koen/Documents/R_scripts/IBM/IBM/") # koen
+# setwd() # gaurav
+
 ### Run
 
 # 1. Set seed
 set.seed(12)
 
-setwd("/Users/koen/Documents/R_scripts/IBM/IBM/")
 # 2. Set genotype map and save
-source("/Users/koen/Documents/R_scripts/IBM/IBM/genetics.R")
+source("genetics.R")
 
 gvaluesZ<-FunctionGvalues(nbLoci = 10,nbAlleles = 10,dominance = 1,overdominance = 0,SDeffects =1,SDalleles = 1)
 gvaluesR<-FunctionGvalues(nbLoci = 10,nbAlleles = 10,dominance = 1,overdominance = 0,SDeffects = 1,SDalleles = 2)
