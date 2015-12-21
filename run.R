@@ -1,7 +1,7 @@
 ### Set your own working directory
 ### ------------------------------
-setwd("/Users/koen/Documents/R_scripts/IBM/IBM/") # koen
-# setwd() # gaurav
+#setwd("/Users/koen/Documents/R_scripts/IBM/IBM/") # koen
+setwd("/Users/gauravbaruha/Desktop/PhD Research/Zurich PhD Research/IBM/GITHUB_IBM/IBM") # gaurav
 
 ### Run
 
