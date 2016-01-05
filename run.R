@@ -14,7 +14,7 @@ source("genetics.R")
 gvaluesZ<-FunctionGvalues(nbLoci = 10,nbAlleles = 10,dominance = 1,overdominance = 0,SDeffects =1,SDalleles = 1)
 gvaluesR<-FunctionGvalues(nbLoci = 10,nbAlleles = 10,dominance = 1,overdominance = 0,SDeffects = 1,SDalleles = 2)
 
-save(gvaluesZ=gvaluesZ,gvaluesR=gvaluesR,file = "GeneticMatrices")
+save(gvaluesZ=gvaluesZ,gvaluesR=gvaluesR,file = "GeneticMatrices.RData")
 
 # 3. Load in class defintions
 source("ibm.R")

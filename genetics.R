@@ -15,6 +15,7 @@ FunctionGvalues<-function(nbLoci=10,nbAlleles=10,dominance=0.5,overdominance=0,S
   {
     # Setting the effects for the homozygotes [all loci]
     effect<-abs(rnorm(n=1,mean=0,sd=SDeffects))# alter the locus importance in a realistic way (many small-effect loci, few major loci)
+    if 
     diag(gvalues[,,L])<-2*rnorm(n=dim(gvalues)[1],mean=0,sd=effect*SDalleles)
     # Setting the effects for the heterozygotes
     for(A in 1:(nbAlleles-1))# loop for off-diagonal = heterozygotes (additive and dominance effects)

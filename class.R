@@ -50,16 +50,16 @@ setMethod("initialize","Leprechaun",function(.Object,parent1,parent2,sibs){#pare
     .Object@DNAR[1,]<-floor(runif(nbLociR,min=1,max=nbAllelesR+1))
   }else{
     #weight1<-pop[[parent1]]@size
-    .Object@DNAZ[1,]<-pop[[parent1]]@DNAZ[cbind(floor(runif(n=nbLociZ, min=1, max=3)), 1:nbAllelesZ)]
-    .Object@DNAR[1,]<-pop[[parent1]]@DNAR[cbind(floor(runif(n=nbLociR, min=1, max=3)), 1:nbAllelesR)]
+    .Object@DNAZ[1,]<-pop[[parent1]]@DNAZ[cbind(floor(runif(n=nbLociZ, min=1, max=3)), floor(runif(n=nbLociZ,min=1,max=3)))]
+    .Object@DNAR[1,]<-pop[[parent1]]@DNAR[cbind(floor(runif(n=nbLociR, min=1, max=3)), floor(runif(n=nbLociR,min=1,max=3)))]
   }
   if(missing(parent2)){
     parent2<-NA
     .Object@DNAZ[2,]<-floor(runif(n = nbLociZ, min=1, max=nbAllelesZ+1))
     .Object@DNAR[2,]<-floor(runif(n = nbLociR, min=1, max=nbAllelesR+1))
   }else{
-    .Object@DNAZ[2,]<-pop[[parent2]]@DNAZ[cbind(floor(runif(n=nbAllelesZ, min=1, max=3)), 1:nbAllelesZ)]
-    .Object@DNAR[2,]<-pop[[parent2]]@DNAR[cbind(floor(runif(n=nbAllelesR ,min=1, max=3)), 1:nbAllelesR)]
+    .Object@DNAZ[2,]<-pop[[parent2]]@DNAZ[cbind(floor(runif(n=nbAllelesZ, min=1, max=3)), floor(runif(n=nbLociZ,min=1,max=3)))]
+    .Object@DNAR[2,]<-pop[[parent2]]@DNAR[cbind(floor(runif(n=nbAllelesR ,min=1, max=3)), floor(runif(n=nbLociR,min=1,max=3)))]
   }
   
   if(missing(sibs)){
@@ -90,7 +90,7 @@ setMethod("initialize","Leprechaun",function(.Object,parent1,parent2,sibs){#pare
   {
     BreedingValueReproduction<-BreedingValueReproduction+(gvaluesR[ .Object@DNAR[1,Locus], .Object@DNAR[2,Locus], Locus]/nbLociR)
   }
-  .Object@bvr<-BreedingValueReproduction
+  .Object@bvr<-BreedingValueReproduction+
   .Object@FixRepro<-rnorm(n=1,mean=.Object@bvr,sd=PlasticityReproduction) #plasticity reproductive quality
   
   .Object@food<-as.integer(0)

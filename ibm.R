@@ -10,7 +10,7 @@ LeprechaunSimul<-function(DIR= "Data/Simple",datafile="dataset",SurvivalSelectio
                           PlasticityBirthSize=1,PlasticityReproduction=0,MaternalEffect=1,MeanRepro=0.1,
                           StudyLength=2000,InitialPopSize=70,SizeSurvivalInflection=0,FoodThresholdGrowth=30,GeneticMatrices="GeneticMatrices"){
    
-  load(file = GeneticMatrices)
+  load(file = "GeneticMatrices.RData")
   nbLociZ<-dim(gvaluesZ)[3]#number of loci targeting Z
   nbAllelesZ<-dim(gvaluesZ)[2]#number of existing alleles per locus targeting Z
   nbLociR<-dim(gvaluesR)[3]#number of loci targeting Reproduction (through unobserved traits)
