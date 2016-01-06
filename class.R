@@ -191,7 +191,8 @@ setMethod("Num_off","Leprechaun",function(Object){
   
   logitV<-Object@age-SexualMaturity
   p<-1/(1+exp(-logitV))
-  Object@ARS<-as.integer(repro)*rbinom(1,size = 1,prob = p)#*disaster[YR]
+  rr<-(0.02*(Object@age/(0.05+0.0001*Object@age^2)))*rbinom(1,size=1,prob=p)*repro
+  Object@ARS<-as.integer(rr) #*disaster[YR]
   return(Object)
 })
 
