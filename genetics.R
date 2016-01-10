@@ -12,7 +12,16 @@ FunctionGvalues<-function(nbLoci=10,nbAlleles=10,dominance=0.5,overdominance=0,S
 {
   gvalues<-array(data=NA,dim=c(nbAlleles,nbAlleles,nbLoci),dimnames=list(paste("A",1: nbAlleles,sep=""),paste("A",1: nbAlleles,sep=""),paste("L",1:nbLoci,sep=""))) # Initialising a matrix that will contain the genotypic effects on the/a trait
   for(L in 1:nbLoci)
+  
   {
+      
+      if (nbAlleles==1 & nbLoci==1) {
+          
+          effect<-abs(rnorm(n=1,mean=0,sd=SDeffects))
+          gvalues[1,1,1]<-2*rnorm(n=1,mean=0,sd=effect*SDalleles)
+      }
+      
+      else {
     # Setting the effects for the homozygotes [all loci]
     effect<-abs(rnorm(n=1,mean=0,sd=SDeffects))# alter the locus importance in a realistic way (many small-effect loci, few major loci)
     
@@ -27,7 +36,9 @@ FunctionGvalues<-function(nbLoci=10,nbAlleles=10,dominance=0.5,overdominance=0,S
         gvalues[D,A,L]<-(0.5-d)*gvalues[A,A,L]+(0.5+d)*gvalues[D,D,L] # the same below diagonal    
       }
     }
+      }
   }
   return(gvalues)
 }
+
 
