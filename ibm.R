@@ -43,7 +43,7 @@ filename<-paste(DIR,"/",datafile,".csv",sep="")
 ############### List of living individuals [their indices], this will save time later, because dead individuals are not looped over
 ALIVE<-1:length(pop)
 
-cat("t,ID,z,bvs,FixRepro,bvr,food,s,ARS,age,p1,p2,phi",file=filename,append=FALSE)
+cat("t,ID,z,bvs,FixRepro,bvr,food,s,ARS,age,hetero,p1,p2,phi",file=filename,append=FALSE)
 
 ############### The start of time
 for(YR in 1:StudyLength){
@@ -74,7 +74,7 @@ for(YR in 1:StudyLength){
 	
   if(length(ALIVE)==0){
     for(i in DEAD){
-      cat("\n",YR,",",pop[[i]]@ID,",",pop[[i]]@size,",",pop[[i]]@bvs,",",pop[[i]]@FixRepro,",",pop[[i]]@bvr,",",pop[[i]]@camemberts,",",pop[[i]]@sex,",",pop[[i]]@ARS,",",pop[[i]]@age,",",pop[[i]]@pID[1],",",pop[[i]]@pID[2],",",0,file=filename,append=TRUE)
+      cat("\n",YR,",",pop[[i]]@ID,",",pop[[i]]@size,",",pop[[i]]@bvs,",",pop[[i]]@FixRepro,",",pop[[i]]@bvr,",",pop[[i]]@camemberts,",",pop[[i]]@sex,",",pop[[i]]@ARS,",",pop[[i]]@age,",",pop[[i]]@hetero,",",pop[[i]]@pID[1],",",pop[[i]]@pID[2],",",0,file=filename,append=TRUE)
     }
     break
   }
@@ -119,10 +119,10 @@ for(YR in 1:StudyLength){
 	}
 	### Everything should be written to a dataframe, to make sure we have all the values for ever and ever
   for(i in ALIVE){
-    cat("\n",YR,",",pop[[i]]@ID,",",pop[[i]]@size,",",pop[[i]]@bvs,",",pop[[i]]@FixRepro,",",pop[[i]]@bvr,",",pop[[i]]@food,",",pop[[i]]@sex,",",pop[[i]]@ARS,",",pop[[i]]@age,",",pop[[i]]@pID[1],",",pop[[i]]@pID[2],",",1,file=filename,append=TRUE)
+    cat("\n",YR,",",pop[[i]]@ID,",",pop[[i]]@size,",",pop[[i]]@bvs,",",pop[[i]]@FixRepro,",",pop[[i]]@bvr,",",pop[[i]]@food,",",pop[[i]]@sex,",",pop[[i]]@ARS,",",pop[[i]]@age,",",pop[[i]]@hetero,",",pop[[i]]@pID[1],",",pop[[i]]@pID[2],",",1,file=filename,append=TRUE)
   }
   for(i in DEAD){
-    cat("\n",YR,",",pop[[i]]@ID,",",pop[[i]]@size,",",pop[[i]]@bvs,",",pop[[i]]@FixRepro,",",pop[[i]]@bvr,",",pop[[i]]@food,",",pop[[i]]@sex,",",pop[[i]]@ARS,",",pop[[i]]@age,",",pop[[i]]@pID[1],",",pop[[i]]@pID[2],",",0,file=filename,append=TRUE)
+    cat("\n",YR,",",pop[[i]]@ID,",",pop[[i]]@size,",",pop[[i]]@bvs,",",pop[[i]]@FixRepro,",",pop[[i]]@bvr,",",pop[[i]]@food,",",pop[[i]]@sex,",",pop[[i]]@ARS,",",pop[[i]]@age,",",pop[[i]]@hetero,",",pop[[i]]@pID[1],",",pop[[i]]@pID[2],",",0,file=filename,append=TRUE)
   }
 }
  return(filename)

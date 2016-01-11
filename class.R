@@ -8,6 +8,7 @@ setClass(
     ID = "integer",
     pID = "integer",
     age = "integer",
+    hetero ="numeric"
     Birth = "integer",
     alive = "logical",
     size = "numeric",
@@ -28,6 +29,7 @@ setGeneric("Age",function(Object){standardGeneric("Age")})
 setGeneric("Grow",function(Object){standardGeneric("Grow")})
 setGeneric("Surv",function(Object){standardGeneric("Surv")})
 
+setGeneric("Heterozygosity",function(Object){standardGeneric("Heterozygosity")})
 setGeneric("IDretrieve",function(Object){standardGeneric("IDretrieve")})
 setGeneric("Size",function(Object){standardGeneric("Size")})
 setGeneric("FixRepro",function(Object){standardGeneric("FixRepro")})
@@ -66,12 +68,14 @@ setMethod("initialize","Leprechaun",function(.Object,parent1,parent2,sibs){#pare
     sibs <- 1
   }
   
+  .Object@hetero<-0
   .Object@age<-as.integer(0)
   .Object@ID<-CID
   .Object@pID<-c(as.integer(parent1),as.integer(parent2))
   .Object@Birth<-as.integer(YR)
   .Object@alive<-TRUE
   BreedingValueSize<-0
+  
   for (Locus in 1:nbLociZ)#take the mean of genetic values
   {
     BreedingValueSize<-BreedingValueSize+(gvaluesZ[ .Object@DNAZ[1,Locus], .Object@DNAZ[2,Locus], Locus]/nbLociZ)
@@ -80,9 +84,12 @@ setMethod("initialize","Leprechaun",function(.Object,parent1,parent2,sibs){#pare
   size<-MeanBirthSize*(1/(0.875+0.125*sibs))+BreedingValueSize
   
   if(!is.na(parent1)){
-    size<-size+MaternalEffect*pop[[parent1]]@size+0.2*pop[[parent1]]@food
+    size<-size+MaternalEffect*pop[[parent1]]@size+0.002*pop[[parent1]]@food
   }
   .Object@size<-abs(rnorm(n=1,mean=size,sd=PlasticityBirthSize)) # sd plasticity birth size
+  
+  
+  Object@hetero<-length(which(.Object@DNAZ[1,]!= .Object@DNAZ[2,]))
   
   
   BreedingValueReproduction<-0
@@ -143,6 +150,15 @@ setMethod("Surv","Leprechaun",function(Object){
   
 })
 
+
+setGeneric("Heterozygosity",function(Object) {standardGeneric("Heterozygosity")})
+
+setMethod("Heterozygosity", "Leprechaun", function(Object){
+    
+return(Object@hetero)
+    
+})
+
 # Simple function, simply adds 1 to the age
 setMethod("Age","Leprechaun",function(Object){
   Object@age<-as.integer(Object@age+1)
@@ -162,6 +178,12 @@ setMethod("Grow","Leprechaun",function(Object){
     
     return(Object)
 })
+
+
+
+
+
+
 
 # Retrieving the ID of an individual
 setMethod("IDretrieve","Leprechaun",function(Object){
